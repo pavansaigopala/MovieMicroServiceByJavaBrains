@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d - %t - %p [%c] - %m%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="ep" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Append>true</Append>
+        <File>entities-proxy.log</File>
+        <encoder>
+            <pattern>%d - new log version - %p [%c] - %m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>entities-proxy.log.%d{yyyy-MM-dd}</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <logger name="org.springframework" level="ERROR"/>
+    <root level="ERROR">
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="ep"/>
+    </root>
+</configuration>
